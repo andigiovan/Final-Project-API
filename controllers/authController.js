@@ -18,6 +18,12 @@ module.exports = {
             if (err) throw err
             res.send(result)
         })
+    },
+    updateRole: (req, res) => {
+        db.query(`update users set role = "premium" where id = ${req.body.id}`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
     }
 
 }
