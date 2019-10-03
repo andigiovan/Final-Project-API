@@ -7,6 +7,12 @@ module.exports = {
             res.send(result)
         })
     }, 
+    getRole: (req, res) => {
+        db.query(`select * from users where role = "${req.query.role}" and id = "${req.query.id}"`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
     login: (req, res) => {
         db.query(`select * from users where username = "${req.query.username}" and password ="${req.query.password}"`, (err, result) => {
             if (err) throw err

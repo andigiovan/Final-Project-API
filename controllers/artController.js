@@ -13,6 +13,13 @@ module.exports = {
             res.send(result)
         })
     },
+    premiumList: (req, res) =>{
+        db.query(`select * from tokohmusik`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
+    
     artDetail: (req, res) => {
         db.query(`insert into articles values (0, "name", "${req.body.content}", "image")`, (err, result) => {
             if (err) throw err
@@ -24,6 +31,13 @@ module.exports = {
     showDetail: (req, res) => {
         let id = req.params.id
         db.query(`select * from articles where id = ${id}`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
+    premiumDetail: (req, res) => {
+        let id = req.params.id
+        db.query(`select * from tokohmusik where id = ${id}`, (err, result) => {
             if (err) throw err
             res.send(result)
         })

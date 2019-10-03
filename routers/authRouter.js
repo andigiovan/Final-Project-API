@@ -3,8 +3,9 @@ var router =  express.Router()
 const {authController} = require ("../controllers")
 
 router.get("/login", authController.login)
-router.post("/register", authController.register)
 router.get("/getdata", authController.getData)
+router.get("/getrole", authController.getRole)
+router.post("/register", authController.register)
 router.patch("/updaterole", authController.updateRole)
 
 
