@@ -13,5 +13,11 @@ module.exports = {
             if (err) throw err
             res.send(result)
         })
-    }  
+    }, 
+    isApproved: (req, res) => {
+        db.query(`update subscribes set isApproved = 1 where id_user = ${req.body.id}`, (err, result) => {
+            if (err) throw err
+            res.send('Update Success!')
+        })
+    },  
 }
