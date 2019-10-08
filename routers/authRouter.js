@@ -7,6 +7,7 @@ router.get("/getdata", authController.getData)
 router.get("/getrole", authController.getRole)
 router.post("/register", authController.register)
 router.patch("/updaterole", authController.updateRole)
+router.get('/verify', authController.verify)
 
 
 module.exports = router
