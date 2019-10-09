@@ -1,5 +1,6 @@
 const db = require("../database")
 const nodemailer = require("nodemailer")
+var crypto = require("crypto")
 const fs = require("fs")
 
 let transporter = nodemailer.createTransport({
@@ -12,6 +13,13 @@ let transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 })
+
+function encryptMyPass(password) {
+    let result = crypto.createHmac("sha256", "jc10").update(password).digest("hex")
+    return result
+}
+
+
 
 module.exports = {
     getData: (req, res) => {
@@ -27,7 +35,8 @@ module.exports = {
         })
     },
     login: (req, res) => {
-        db.query(`select * from users where username = "${req.query.username}" and password ="${req.query.password}"`, (err, result) => {
+        var encrypt = encryptMyPass(req.query.password)
+        db.query(`select * from users where username = "${req.query.username}" and password ="${encrypt}"`, (err, result) => {
             if (err) throw err
             res.send(result)
         })
@@ -61,7 +70,8 @@ module.exports = {
         let sql = `update users set isVerified = 1 where username = '${req.query.username}'`
         db.query(sql, (err, result) => {
             if (err) throw err
-            res.send('Akun Anda telah terverifikasi')
+           
+            res.redirect("http://localhost:3000/linkverify")
         })
     },
     
