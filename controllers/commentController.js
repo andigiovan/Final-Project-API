@@ -23,18 +23,10 @@ module.exports = {
         })
     },
     editComment: (req, res) => {
-        db.query(`update comments set comment = '${req.body.comment}' where id = ${req.body.id}`, (err, result) => {
+        db.query(`update comments set comment = '${req.body.comment}', edited = "(edited)" where id = ${req.body.id}`, (err, result) => {
             if (err) throw err
             res.send('Update success')
         })
-    },
-    updateComment: (req, res) => {
-        db.query(`update comments set edited = "(edited)" where id = ${req.body.id}`, (err, result) => {
-            
-            if (err) throw err
-            res.send(result)
-        })
-        
     }
     
 }

@@ -7,6 +7,7 @@ const {authRouter} = require("./routers")
 const {artRouter} = require("./routers") 
 const {subsRouter} = require("./routers") 
 const {commentRouter} = require("./routers") 
+const {premiumCommentRouter} = require("./routers") 
 
 app.use(bodyParser())
 app.use(cors())
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 app.use("/auth", authRouter)
 app.use("/art", artRouter)
 app.use("/comment", commentRouter)
+app.use("/premiumcomment", premiumCommentRouter)
 app.use('/files', express.static('uploads'))
 app.use(subsRouter)
 

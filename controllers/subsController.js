@@ -19,5 +19,12 @@ module.exports = {
             if (err) throw err
             res.send('Update Success!')
         })
-    },  
+    }, 
+    deleteSubs: (req, res) => {
+        var id = req.query.id
+        db.query(`delete from subscribes where id = ${id}`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    }, 
 }
