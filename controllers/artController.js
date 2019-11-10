@@ -19,15 +19,6 @@ module.exports = {
             res.send(result)
         })
     },
-    
-    artDetail: (req, res) => {
-        db.query(`insert into articles values (0, "name", "${req.body.content}", "image")`, (err, result) => {
-            if (err) throw err
-            res.send(result)
-            console.log(result);
-            
-        })
-    }, 
     showDetail: (req, res) => {
         let id = req.params.id
         db.query(`select * from articles where id = ${id}`, (err, result) => {
@@ -41,6 +32,34 @@ module.exports = {
             if (err) throw err
             res.send(result)
         })
-    }
+    },
+    userArticleDetail: (req, res) => {
+        let id = req.params.id
+        db.query(`select * from userlist where id = ${id}`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
+    
+    userArticle: (req, res) => {
+        db.query(`insert into userlist values (0, "${req.body.name}", "${req.body.subtitle}", "${req.body.content}", "${req.body.image}", "${req.body.image_2}", "${req.body.born}", "${req.body.dead}", "${req.body.nationality}", "${req.body.era}", "${req.body.user_id}")`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+            console.log(result);
+            
+        })
+    }, 
+    getUserArticle: (req, res) =>{
+        console.log(req.query);
+        
+        db.query(`select * from userlist where user_id = ${req.query.user_id}`, 
+        (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
+    
     
 }
+    
+    
