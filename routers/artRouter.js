@@ -10,4 +10,5 @@ router.get("/figuredetail/:id", artController.showDetail)
 router.get("/premiumfiguredetail/:id", artController.premiumDetail)
 router.get("/userarticledetail/:id", artController.userArticleDetail)
 router.get("/getuserarticle", artController.getUserArticle)
+router.delete("/deleteuserarticle/:id", artController.deleteUserArticle)
 module.exports = router

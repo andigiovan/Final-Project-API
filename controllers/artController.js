@@ -58,6 +58,13 @@ module.exports = {
             res.send(result)
         })
     },
+    deleteUserArticle: (req, res) => {
+        var id = req.params.id
+        db.query(`delete from userlist where id = ${id}`, (err, result) => {
+            if (err) throw err
+            res.send(result)
+        })
+    },
     
     
 }
